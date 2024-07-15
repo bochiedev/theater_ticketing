@@ -132,8 +132,11 @@ theater_ticketing/
 ├── theater_ticketing/
 │   ├── __init__.py
 │   ├── .env
+│   ├── env.example
 │   ├── celery.py
 │   ├── settings.py
+│   ├── managers.py
+│   ├── serializers.py
 │   ├── urls.py
 │   ├── wsgi.py
 │   └── asgi.py
