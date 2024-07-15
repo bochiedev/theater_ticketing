@@ -261,6 +261,7 @@ theater_ticketing/
   ```json
   {
     "theater": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "title": "Mad Max 4",
     "date": "2024-07-15"
   }
   ```
@@ -270,6 +271,7 @@ theater_ticketing/
   ```json
   {
     "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "title": "Mad Max 4",
     "theater": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
     "date": "2024-07-15"
   }
@@ -301,7 +303,7 @@ theater_ticketing/
 
 #### List Available Seats for a Selected Theater
 
-- **URL:** `/api/v1/seating/{id}/`
+- **URL:** `/api/v1/seating/{uid}/`
 - **Method:** `GET`
 - **Response:**
 
