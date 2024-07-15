@@ -5,6 +5,8 @@ from theaters.models import Seating, Theater
 class SeatingSerializer(serializers.ModelSerializer):
     available_seats = serializers.SerializerMethodField()
     booked_seats = serializers.SerializerMethodField()
+    theater = serializers.SerializerMethodField()
+
 
     class Meta:
         model = Seating
@@ -16,10 +18,20 @@ class SeatingSerializer(serializers.ModelSerializer):
 
     def get_booked_seats(self, obj):
         return obj.reservation_set.values_list('seat_number', flat=True)
+    
+    def get_theater(self, obj):
+        return obj.theater.name
+
 
 class TheaterSerializer(serializers.ModelSerializer):
-    seatings = SeatingSerializer(many=True, read_only=True)
+    seatings = serializers.SerializerMethodField()
+
 
     class Meta:
         model = Theater
         fields = ['uid', 'name', 'total_seats', 'seatings']
+
+    def get_seatings(self, obj):
+        seatings = obj.seatings.all()
+        return SeatingSerializer(seatings, many=True).data
+

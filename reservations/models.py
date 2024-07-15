@@ -8,7 +8,7 @@ from users.models import User
 
 class Reservation(BaseModel):
     seating = models.ForeignKey(Seating, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
     seat_number = models.PositiveIntegerField()
 
     class Meta:

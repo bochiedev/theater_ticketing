@@ -13,7 +13,7 @@ class Theater(BaseModel):
 
 class Seating(BaseModel):
     title = models.CharField(max_length=100)
-    theater = models.ForeignKey(Theater, on_delete=models.CASCADE)
+    theater = models.ForeignKey(Theater, on_delete=models.CASCADE, related_name="seatings")
     show_date = models.DateField()
 
     def __str__(self):
