@@ -175,6 +175,170 @@ theater_ticketing/
     └── utils.py
 ```
 
+## API Endpoints
+
+### User Authentication
+
+#### Register a New User
+
+- **URL:** `/api/v1/auth/users/`
+- **Method:** `POST`
+- **Request Body:**
+
+  ```json
+  {
+    "email": "user@example.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "password": "password123"
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "email": "user@example.com",
+    "first_name": "John",
+    "last_name": "Doe"
+  }
+  ```
+
+#### Login to Obtain a JWT Token
+
+- **URL:** `/api/v1/auth/token/`
+- **Method:** `POST`
+- **Request Body:**
+
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123"
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "refresh": "your-refresh-token",
+    "access": "your-access-token"
+  }
+  ```
+
+### Admin Management
+
+#### Create a New Theater
+
+- **URL:** `/api/v1/theater/`
+- **Method:** `POST`
+- **Request Body:**
+
+  ```json
+  {
+    "name": "Main Theater",
+    "total_seats": 100
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "name": "Main Theater",
+    "total_seats": 100
+  }
+  ```
+
+#### Create Seating for a Specific Date
+
+- **URL:** `/api/v1/seating/`
+- **Method:** `POST`
+- **Request Body:**
+
+  ```json
+  {
+    "theater": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "date": "2024-07-15"
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "theater": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "date": "2024-07-15"
+  }
+  ```
+
+### User Interaction
+
+#### List All Theaters Available for Specific Dates
+
+- **URL:** `/api/v1/theater/`
+- **Method:** `GET`
+- **Response:**
+
+  ```json
+  [
+    {
+      "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+      "name": "Main Theater",
+      "total_seats": 100,
+      "seatings": [
+        {
+          "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+          "date": "2024-07-15"
+        }
+      ]
+    }
+  ]
+  ```
+
+#### List Available Seats for a Selected Theater
+
+- **URL:** `/api/v1/seating/{id}/`
+- **Method:** `GET`
+- **Response:**
+
+  ```json
+  {
+    "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "theater": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "date": "2024-07-15",
+    "available_seats": [1, 2, 3, ..., 100],
+    "booked_seats": [10, 15, 20]
+  }
+  ```
+
+#### Reserve a Preferred Seat for a Specific Show
+
+- **URL:** `/api/v1/reservation/`
+- **Method:** `POST`
+- **Request Body:**
+
+  ```json
+  {
+    "seating": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "seat_number": 25
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "uid": "5f8a5312-d168-4b7e-bf42-fd1839330a36",
+    "user": 1,
+    "seating": 1,
+    "seat_number": 25
+  }
+  ```
+
 ## Running Tests
 
 To run the tests for the project, use the following command:
